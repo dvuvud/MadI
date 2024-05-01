@@ -70,6 +70,15 @@ void UMenu::HostButtonClicked()
 void UMenu::JoinButtonClicked()
 {
     JoinButton->SetIsEnabled(false);
+    if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(
+                -1,
+                15.f,
+                FColor::Red,
+                FString(TEXT("Join Button Clicked!"))
+            );
+        }
     if (MultiplayerSessionsSubsystem)
     {
         MultiplayerSessionsSubsystem->FindSessions(10000);
@@ -156,12 +165,31 @@ void UMenu::OnCreateSession(bool bWasSuccessful)
 
 void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SessionResults, bool bWasSuccessful)
 {
+    if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(
+                -1,
+                15.f,
+                FColor::Green,
+                FString(TEXT("We Might've Found Sessions"))
+            );
+        }
+    if (MultiplayerSessionsSubsystem == nullptr)
+    {
+        if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(
+                -1,
+                15.f,
+                FColor::Green,
+                FString(TEXT("MultiplayerSessionsSubstystem doesn't exist"))
+            );
+        }
+        return;
+    }
     for (auto Result : SessionResults)
     {
-        if (MultiplayerSessionsSubsystem == nullptr)
-        {
-            return;
-        }
+        
         FString SettingsValue;
         Result.Session.SessionSettings.Get(FName("MatchType"), SettingsValue);
         if (SettingsValue == MatchType)
@@ -170,10 +198,16 @@ void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SessionResu
             return;
         }
     }
-    if (!bWasSuccessful || SessionResults.Num() == 0)
-    {
-        JoinButton->SetIsEnabled(true);
-    }
+    if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(
+                -1,
+                15.f,
+                FColor::Red,
+                FString(TEXT("We Might've Not Actually"))
+            );
+        }
+    JoinButton->SetIsEnabled(true);
 }
 
 void UMenu::OnJoinSession(EOnJoinSessionCompleteResult::Type Result)
