@@ -97,6 +97,23 @@ void AMadlChar::Look(const FInputActionValue& Value)
 	}
 }
 
+void AMadlChar::NoGravity()
+{
+	ToggleGravityOnAndOffInteger++;
+	bool bToggle = ToggleGravityOnAndOffInteger % 2 > 0 ? true : false;
+	UCharacterMovementComponent* MovementComp = GetCharacterMovement();
+
+
+	if (bToggle && MovementComp)
+	{
+		MovementComp->GravityScale = 0;
+	}
+	else if (MovementComp)
+	{
+		MovementComp->GravityScale = 1;
+	}
+}
+
 void AMadlChar::Jump()
 {
 	Super::Jump();
@@ -118,6 +135,7 @@ void AMadlChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMadlChar::Move);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMadlChar::Look);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &AMadlChar::Jump);
+		EnhancedInputComponent->BindAction(NoGravityAction, ETriggerEvent::Started, this, &AMadlChar::NoGravity);
 	}
 }
 
