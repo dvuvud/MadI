@@ -37,8 +37,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Input)
 	UInputAction* JumpAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadonly, Category = Input)
+	UInputAction* NoGravityAction;
+
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void NoGravity();
+
+	int ToggleGravityOnAndOffInteger = 0;
 
 	virtual void Jump() override;
 
