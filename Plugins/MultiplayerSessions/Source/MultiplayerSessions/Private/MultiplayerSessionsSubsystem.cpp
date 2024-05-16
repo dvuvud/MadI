@@ -43,7 +43,7 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
 
     // Store the delegate in an FDelegateHandle to later remove it from the list
     CreateSessionCompleteDelegateHandle = SessionInterface->AddOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegate);
-    
+    // Creating an object for the TSharedPtr
     LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
     LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL" ? true : false;
     LastSessionSettings->NumPublicConnections = NumPublicConnections;
