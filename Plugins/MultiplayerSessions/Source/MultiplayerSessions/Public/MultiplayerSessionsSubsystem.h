@@ -63,6 +63,7 @@ private:
 	// IOnlineSessionPtr is a typedef
 	// The member functions are not in use in the header file therefore this is redundant
 	// TSharedPtr<class IOnlineSession,ESPMode::ThreadSafe> SessionInterface: would be a more efficient way to declare this variable
+	// Same goes for the delegates further down
 	IOnlineSessionPtr SessionInterface;
 	TSharedPtr<FOnlineSessionSettings> LastSessionSettings;
 	TSharedPtr<FOnlineSessionSearch> LastSessionSearch;
