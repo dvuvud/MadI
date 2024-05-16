@@ -49,6 +49,7 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
     LastSessionSettings->bIsLANMatch = IOnlineSubsystem::Get()->GetSubsystemName() == "NULL" ? true : false;
     LastSessionSettings->NumPublicConnections = NumPublicConnections;
     LastSessionSettings->bAllowJoinInProgress = true;
+	// Only allows for searches within same region
     LastSessionSettings->bAllowJoinViaPresence = true;
     LastSessionSettings->bShouldAdvertise = true;
     LastSessionSettings->bUsesPresence = true;
