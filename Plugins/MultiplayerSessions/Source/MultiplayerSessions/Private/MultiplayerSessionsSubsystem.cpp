@@ -42,6 +42,7 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
     }
 
     // Store the delegate in an FDelegateHandle to later remove it from the list
+	// Binds the delegate to the session interface so it can be called on session creation
     CreateSessionCompleteDelegateHandle = SessionInterface->AddOnCreateSessionCompleteDelegate_Handle(CreateSessionCompleteDelegate);
     // Creating an object for the TSharedPtr
     LastSessionSettings = MakeShareable(new FOnlineSessionSettings());
@@ -55,6 +56,7 @@ void UMultiplayerSessionsSubsystem::CreateSession(int32 NumPublicConnections, FS
     LastSessionSettings->Set(FName("MatchType"), MatchType, EOnlineDataAdvertisementType::ViaOnlineServiceAndPing);
     LastSessionSettings->BuildUniqueId = 1;
 
+	// Getting the NetID needed to create the session in the following if-statement
     const ULocalPlayer* LocalPlayer = GetWorld()->GetFirstLocalPlayerFromController();
     if (!SessionInterface->CreateSession(*LocalPlayer->GetPreferredUniqueNetId(), NAME_GameSession, *LastSessionSettings))
     {
