@@ -71,6 +71,7 @@ private:
 	//
 	// To add to the online session interface delegate list
 	// We'll bind our MultiplayerSessionsSubsystem internal callbacks to these.
+	// Called by steams servers whenever a given event occurs, all bound callbacks are then called
 	//
 	FOnCreateSessionCompleteDelegate CreateSessionCompleteDelegate;
 	FDelegateHandle CreateSessionCompleteDelegateHandle;
