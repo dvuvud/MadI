@@ -8,6 +8,7 @@
 
 
 UMultiplayerSessionsSubsystem::UMultiplayerSessionsSubsystem():
+// Creating objects for the OnlineSubsystem delegates
     CreateSessionCompleteDelegate(FOnCreateSessionCompleteDelegate::CreateUObject(this, &ThisClass::OnCreateSessionComplete)),
     FindSessionsCompleteDelegate(FOnFindSessionsCompleteDelegate::CreateUObject(this, &ThisClass::OnFindSessionsComplete)),
     JoinSessionCompleteDelegate(FOnJoinSessionCompleteDelegate::CreateUObject(this, &ThisClass::OnJoinSessionComplete)),
