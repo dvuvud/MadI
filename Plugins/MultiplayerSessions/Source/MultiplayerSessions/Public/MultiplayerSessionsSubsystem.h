@@ -61,7 +61,7 @@ void OnStartSessionComplete(FName SessionName, bool bWasSuccessful);
 
 private:
 	// IOnlineSessionPtr is a typedef
-	// The member functions are not in use in the headerfile therefore this is redundant
+	// The member functions are not in use in the header file therefore this is redundant
 	// TSharedPtr<class IOnlineSession,ESPMode::ThreadSafe> SessionInterface: would be a more efficient way to declare this variable
 	IOnlineSessionPtr SessionInterface;
 	TSharedPtr<FOnlineSessionSettings> LastSessionSettings;
