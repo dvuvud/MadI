@@ -157,7 +157,7 @@ void UMenu::OnCreateSession(bool bWasSuccessful)
                 -1,
                 15.f,
                 FColor::Red,
-                FString(TEXT("Session Created Failed!"))
+                FString(TEXT("Session Creation Failed!"))
             );
         }
     }
